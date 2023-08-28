@@ -22,7 +22,6 @@ serde_json = "1.0.105"
 serde = "1.0.183"
 anyhow = "1.0.75"
 nix = "0.26.2"
-wasi-common = "11.0"
 oci-spec = { version = "0.6.2", features = ["runtime"] }
 tokio = "1.32.0"
 ttrpc = "0.8.0"
