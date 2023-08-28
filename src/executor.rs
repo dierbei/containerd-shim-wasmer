@@ -46,9 +46,8 @@ impl Executor for WasmerExecutor {
             return Err(ExecutorError::InvalidArg);
         }
 
-        let _ = self
-            .prepare(spec, args)
-            .map_err(|err| ExecutorError::Other(format!("failed to prepare function: {}", err)))?;
+        self.start(spec, args)
+            .map_err(|err| ExecutorError::Other(format!("failed to start wasm: {}", err)))?;
 
         std::process::exit(0)
     }
@@ -78,7 +77,7 @@ impl Executor for WasmerExecutor {
 }
 
 impl WasmerExecutor {
-    fn prepare(&self, spec: &Spec, args: &[String]) -> anyhow::Result<()> {
+    fn start(&self, spec: &Spec, args: &[String]) -> anyhow::Result<()> {
         // already in the cgroup
         let envs = oci_wasmer::env_to_wasi(spec);
         log::info!("setting up wasi");
