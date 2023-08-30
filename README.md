@@ -18,5 +18,6 @@ ctr run --rm --runtime=io.containerd.wasmer.v1 ghcr.io/containerd/runwasi/wasi-d
 
 # Unit Test
 ```shell
-cargo test
+export RUST_LOG=trace
+cargo test -- --show-output
 ```
